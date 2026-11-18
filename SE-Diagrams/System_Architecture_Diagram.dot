@@ -1,0 +1,11 @@
+digraph Architecture {
+ graph [rankdir=TB, compound=true, splines=ortho, nodesep=0.45, ranksep=0.55, bgcolor="white", pad="0.3", label="SYSTEM ARCHITECTURE — COURIER AND PARCEL TRACKING MANAGEMENT SYSTEM", labelloc=t, fontsize=19, fontname="Arial", fontcolor="#17324d"];
+ node [shape=box, style="rounded,filled", fontname="Arial", fontsize=11, margin="0.18,0.12", color="#60758b"];
+ edge [fontname="Arial", fontsize=9, color="#60758b", arrowsize=0.8];
+ subgraph cluster_users {label="USER LAYER"; style=filled; color="#d7e8f7"; bgcolor="#f2f8fd"; Admin [label="Administrator / Operator", fillcolor="#d8eaff"]; Track [label="Customer / Tracking User", fillcolor="#d8eaff"];}
+ subgraph cluster_app {label="APPLICATION LAYER — JAVA CONSOLE"; style=filled; color="#b9e4dc"; bgcolor="#effaf7"; Menu [label="Menu and Input Handling\n(Scanner / Console UI)", fillcolor="#c9f0e5"]; Logic [label="Business Logic\nCustomer · Parcel · Status · Reports", fillcolor="#c9f0e5"]; Validation [label="Validation and Delivery Charge Calculation", fillcolor="#c9f0e5"];}
+ subgraph cluster_data {label="DATA ACCESS AND DATABASE LAYER"; style=filled; color="#f2d59c"; bgcolor="#fff9ed"; JDBC [label="JDBC Data Access\nPrepared Statements / Transactions", fillcolor="#ffe8b8"]; MySQL [shape=cylinder, label="MySQL Database\ncustomers · parcels\ndelivery_personnel · tracking_history\ndelivery_attempts", fillcolor="#ffe8b8"];}
+ subgraph cluster_analytics {label="FDS — DATA PROCESSING AND VISUALIZATION"; style=filled; color="#d8c8ef"; bgcolor="#f7f2fd"; Python [label="Python Retrieval and Preprocessing\nPandas", fillcolor="#e8dcfa"]; CSV [shape=note, label="processed_shipments.csv", fillcolor="#e8dcfa"]; Charts [label="Visualization\nMatplotlib Charts", fillcolor="#e8dcfa"];}
+ Admin -> Menu; Track -> Menu; Menu -> Logic -> Validation -> JDBC -> MySQL;
+ MySQL -> Python [label="read latest shipment data"]; Python -> CSV -> Charts;
+}

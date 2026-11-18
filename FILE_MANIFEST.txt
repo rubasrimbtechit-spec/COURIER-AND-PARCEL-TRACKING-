@@ -1,0 +1,3 @@
+Scenario 26 console-first package.
+Contains Java-Console, Database, DBMS-Database, FDS-Python, FDS-Visualization, SE-Diagrams, SE-SRS and SE-Testing.
+Optional web/deployment stack (Spring Boot Backend, Docker, Railway and Render configuration) intentionally excluded.

@@ -1,0 +1,18 @@
+digraph ClassDiagram {
+ graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.65", splines=ortho, label="CLASS DIAGRAM — COURIER AND PARCEL TRACKING MANAGEMENT SYSTEM", labelloc=t, fontsize=20, fontname="Arial", fontcolor="#17324d"];
+ node [shape=plain, fontname="Arial"];
+ edge [fontname="Arial", fontsize=10, color="#526579", arrowsize=0.8];
+ Customer [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#246a9a"><TR><TD BGCOLOR="#d9efff"><B>Customer</B></TD></TR><TR><TD ALIGN="LEFT">- customerId: long<BR ALIGN="LEFT"/>- fullName: String<BR ALIGN="LEFT"/>- phone: String<BR ALIGN="LEFT"/>- addressLine: String<BR ALIGN="LEFT"/>- city: String</TD></TR><TR><TD ALIGN="LEFT" BGCOLOR="#f3f8fc">+ addCustomer()<BR ALIGN="LEFT"/>+ viewCustomer()</TD></TR></TABLE>>];
+ Parcel [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#246a9a"><TR><TD BGCOLOR="#d9efff"><B>Parcel</B></TD></TR><TR><TD ALIGN="LEFT">- parcelId: long<BR ALIGN="LEFT"/>- trackingNumber: String<BR ALIGN="LEFT"/>- weightKg: decimal<BR ALIGN="LEFT"/>- deliveryCharge: decimal<BR ALIGN="LEFT"/>- currentStatus: String</TD></TR><TR><TD ALIGN="LEFT" BGCOLOR="#f3f8fc">+ registerParcel()<BR ALIGN="LEFT"/>+ calculateCharge()<BR ALIGN="LEFT"/>+ updateStatus()<BR ALIGN="LEFT"/>+ trackParcel()</TD></TR></TABLE>>];
+ Personnel [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#246a9a"><TR><TD BGCOLOR="#d9efff"><B>DeliveryPersonnel</B></TD></TR><TR><TD ALIGN="LEFT">- personnelId: long<BR ALIGN="LEFT"/>- fullName: String<BR ALIGN="LEFT"/>- phone: String<BR ALIGN="LEFT"/>- serviceArea: String</TD></TR><TR><TD ALIGN="LEFT" BGCOLOR="#f3f8fc">+ assignParcel()<BR ALIGN="LEFT"/>+ updateDelivery()</TD></TR></TABLE>>];
+ History [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#246a9a"><TR><TD BGCOLOR="#d9efff"><B>TrackingHistory</B></TD></TR><TR><TD ALIGN="LEFT">- historyId: long<BR ALIGN="LEFT"/>- status: String<BR ALIGN="LEFT"/>- location: String<BR ALIGN="LEFT"/>- updatedAt: datetime</TD></TR><TR><TD ALIGN="LEFT" BGCOLOR="#f3f8fc">+ appendEvent()</TD></TR></TABLE>>];
+ Attempt [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#246a9a"><TR><TD BGCOLOR="#d9efff"><B>DeliveryAttempt</B></TD></TR><TR><TD ALIGN="LEFT">- attemptId: long<BR ALIGN="LEFT"/>- attemptNo: int<BR ALIGN="LEFT"/>- outcome: String<BR ALIGN="LEFT"/>- attemptedAt: datetime</TD></TR><TR><TD ALIGN="LEFT" BGCOLOR="#f3f8fc">+ recordAttempt()</TD></TR></TABLE>>];
+ Console [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#ad7a22"><TR><TD BGCOLOR="#ffedc7"><B>CourierApp</B></TD></TR><TR><TD ALIGN="LEFT">+ displayMenu()<BR ALIGN="LEFT"/>+ readChoice()<BR ALIGN="LEFT"/>+ runOperation()</TD></TR></TABLE>>];
+ DB [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#ad7a22"><TR><TD BGCOLOR="#ffedc7"><B>DB</B></TD></TR><TR><TD ALIGN="LEFT">+ getConnection()<BR ALIGN="LEFT"/>+ executeQuery()<BR ALIGN="LEFT"/>+ executeUpdate()</TD></TR></TABLE>>];
+ {rank=same; Customer; Personnel} {rank=same; Parcel; Console; DB} {rank=same; History; Attempt}
+ Customer -> Parcel [label="sends 1 to many", arrowhead=none, taillabel="1", headlabel="0..*"];
+ Personnel -> Parcel [label="assigned to", arrowhead=none, taillabel="0..1", headlabel="0..*"];
+ Parcel -> History [label="has", arrowhead=none, taillabel="1", headlabel="0..*"];
+ Parcel -> Attempt [label="has", arrowhead=none, taillabel="1", headlabel="0..*"];
+ Console -> DB [label="uses JDBC", style=dashed, arrowhead=vee];
+}

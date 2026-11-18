@@ -1,0 +1,29 @@
+graph ERDiagram {
+ graph [layout=neato, overlap=false, splines=true, bgcolor="white", pad="0.35", label="ENTITY RELATIONSHIP DIAGRAM — COURIER AND PARCEL TRACKING MANAGEMENT SYSTEM", labelloc=t, fontsize=19, fontname="Arial", fontcolor="#17324d"];
+ node [fontname="Arial", fontsize=10, style=filled]; edge [fontname="Arial", fontsize=9, color="#65758b"];
+ Customer [shape=box, fillcolor="#dff2df", color="#36834a", penwidth=1.5, pos="0,4!"];
+ Parcel [shape=box, fillcolor="#dff2df", color="#36834a", penwidth=1.5, pos="4,4!"];
+ Personnel [shape=box, fillcolor="#dff2df", color="#36834a", penwidth=1.5, pos="8,4!"];
+ History [shape=box, fillcolor="#dff2df", color="#36834a", penwidth=1.5, pos="2,0!"];
+ Attempt [shape=box, fillcolor="#dff2df", color="#36834a", penwidth=1.5, pos="6,0!"];
+ Sends [shape=diamond, label="SENDS", fillcolor="#e5e9ff", color="#5869ad", pos="2,4!"];
+ Assigned [shape=diamond, label="ASSIGNED TO", fillcolor="#e5e9ff", color="#5869ad", pos="6,4!"];
+ HasHistory [shape=diamond, label="HAS", fillcolor="#e5e9ff", color="#5869ad", pos="1,2!"];
+ HasAttempt [shape=diamond, label="HAS", fillcolor="#e5e9ff", color="#5869ad", pos="7,2!"];
+ Customer -- Sends [label="1"]; Sends -- Parcel [label="N"];
+ Parcel -- Assigned [label="N"]; Assigned -- Personnel [label="0..1"];
+ Parcel -- HasHistory [label="1"]; HasHistory -- History [label="N"];
+ Parcel -- HasAttempt [label="1"]; HasAttempt -- Attempt [label="N"];
+ // Attribute ovals
+ node [shape=ellipse, fillcolor="#fff0f5", color="#b65d7b", fontsize=9];
+ c1 [label="customer_id (PK)", pos="-1,5.5!"]; c2 [label="full_name", pos="0,6.3!"]; c3 [label="phone (Unique)", pos="1,5.5!"]; c4 [label="email", pos="-1,3!"];
+ p1 [label="parcel_id (PK)", pos="3,5.5!"]; p2 [label="tracking_number (Unique)", pos="4,6.3!"]; p3 [label="weight_kg", pos="5,5.5!"]; p4 [label="current_status", pos="4,2.8!"]; p5 [label="delivery_charge", pos="5,3!"];
+ d1 [label="personnel_id (PK)", pos="8,5.5!"]; d2 [label="full_name", pos="9,6.3!"]; d3 [label="phone", pos="10,5.5!"];
+ h1 [label="history_id (PK)", pos="0,0!"]; h2 [label="status", pos="1,-1!"]; h3 [label="updated_at", pos="3,-1!"];
+ a1 [label="attempt_id (PK)", pos="5,0!"]; a2 [label="attempt_no", pos="6,-1!"]; a3 [label="outcome", pos="7,-1!"];
+ Customer -- c1; Customer -- c2; Customer -- c3; Customer -- c4;
+ Parcel -- p1; Parcel -- p2; Parcel -- p3; Parcel -- p4; Parcel -- p5;
+ Personnel -- d1; Personnel -- d2; Personnel -- d3;
+ History -- h1; History -- h2; History -- h3;
+ Attempt -- a1; Attempt -- a2; Attempt -- a3;
+}

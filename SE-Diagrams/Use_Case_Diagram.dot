@@ -1,0 +1,22 @@
+graph UseCase {
+ graph [rankdir=LR, splines=true, bgcolor="white", pad="0.35", nodesep="0.35", ranksep="0.65", label="USE CASE DIAGRAM — COURIER AND PARCEL TRACKING MANAGEMENT SYSTEM", labelloc=t, fontsize=19, fontname="Arial", fontcolor="#17324d"];
+ node [fontname="Arial", fontsize=10]; edge [fontname="Arial", fontsize=9, color="#526579"];
+ Admin [shape=plaintext, label="O\n/|\\\n/ \\ \nAdministrator / Operator", fontsize=11];
+ Customer [shape=plaintext, label="O\n/|\\\n/ \\ \nCustomer / Tracking User", fontsize=11];
+ subgraph cluster_system {label="COURIER AND PARCEL TRACKING SYSTEM"; style="rounded,filled"; color="#6d9b83"; fillcolor="#f1f8f1"; penwidth=1.5;
+ AddCustomer [shape=ellipse, style=filled, fillcolor="#e2f1ff", label="Add / View Customer"];
+ Register [shape=ellipse, style=filled, fillcolor="#e2f1ff", label="Register Parcel"];
+ Assign [shape=ellipse, style=filled, fillcolor="#e2f1ff", label="Assign Delivery Personnel"];
+ Update [shape=ellipse, style=filled, fillcolor="#e2f1ff", label="Update Parcel Status"];
+ Attempt [shape=ellipse, style=filled, fillcolor="#e2f1ff", label="Record Delivery Attempt"];
+ Track [shape=ellipse, style=filled, fillcolor="#e2f1ff", label="Track Parcel"];
+ Report [shape=ellipse, style=filled, fillcolor="#e2f1ff", label="View Shipment Report"];
+ Charge [shape=ellipse, style=filled, fillcolor="#fff0d6", label="Calculate Delivery Charge"];
+ History [shape=ellipse, style=filled, fillcolor="#fff0d6", label="Save Tracking History"];
+ }
+ Admin -- AddCustomer; Admin -- Register; Admin -- Assign; Admin -- Update; Admin -- Attempt; Admin -- Report;
+ Customer -- Track;
+ Register -- Charge [style=dashed, label="<<include>>"];
+ Update -- History [style=dashed, label="<<include>>"];
+ Track -- History [style=dashed, label="reads"];
+}
