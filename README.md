@@ -1,8 +1,7 @@
 # Courier and Parcel Tracking Management System — Scenario 26
 
 ## Console-first academic project
-This package is organized for a Java terminal demonstration with MySQL DBMS integration and Python FDS processing. It does not include the optional Spring Boot website, Docker, Railway, or Render deployment files.
-
+This package is organized for a Java terminal demonstration with MySQL DBMS integration and Python FDS processing.
 ## Project folders
 - `Java-Console/` — menu-driven Java application (VS Code terminal).
 - `Database/` — MySQL schema and optional sample data used by the Java application.
